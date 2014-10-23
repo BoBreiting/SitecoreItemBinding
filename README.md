@@ -1,5 +1,5 @@
-SitecoreItemBinding
-===================
+Sitecore ItemBinding
+====================
 
 The main purpose of the ItemBinding framework is to create a simple and lightweight framework that eliminates the repetitive code that is usually required to access Sitecore items and creating model classes for representing item data and to automate model class instantiation and item binding.
 
