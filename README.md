@@ -1,7 +1,7 @@
 Sitecore ItemBinding
 ====================
 
-The main purpose of the ItemBinding framework is to create a simple and lightweight framework that eliminates the repetitive code that is usually required to access Sitecore items and creating model classes for representing item data and to automate model class instantiation and item binding.
+The main purpose of the Sitecore ItemBinding framework is to create a simple and lightweight framework that eliminates the repetitive code that is usually required to access Sitecore items and creating model classes for representing item data and to automate model class instantiation and item binding.
 
 The framework is intended to standardize and minimize the code required to instantiate and bind model classes to items to help developers instantly recognize how the various parts of a solution works by using common code patterns.
 
