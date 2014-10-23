@@ -3,25 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{4BA3D00C-2083-4F6E-B8BC-FD64CF0CD4B4}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{D8765950-1B20-47A2-AFD3-5F5F3C426CA2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBinding", "www\Components\Framework\ItemBinding\ItemBinding.csproj", "{A38CAA47-7779-4770-8DF0-9CBFCF917C10}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{2129323B-E645-43BD-BDEA-3218CEFB4530}"
 	ProjectSection(SolutionItems) = preProject
-		www\Documentation\Architectural_Overview.vsd = www\Documentation\Architectural_Overview.vsd
-		www\Documentation\Quick_Start_Guide.docx = www\Documentation\Quick_Start_Guide.docx
-		www\Documentation\Reference.docx = www\Documentation\Reference.docx
+		Documentation\Architectural_Overview.vsd = Documentation\Architectural_Overview.vsd
+		Documentation\Quick_Start_Guide.docx = Documentation\Quick_Start_Guide.docx
+		Documentation\Reference.docx = Documentation\Reference.docx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBinding.Mvc", "www\Components\Framework\ItemBinding.Mvc\ItemBinding.Mvc.csproj", "{1D2B10B6-58DF-476E-B6E8-902034DFAF46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBinding", "ItemBinding\ItemBinding.csproj", "{A38CAA47-7779-4770-8DF0-9CBFCF917C10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBinding.Mvc", "ItemBinding.Mvc\ItemBinding.Mvc.csproj", "{1D2B10B6-58DF-476E-B6E8-902034DFAF46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Dev|Any CPU = Dev|Any CPU
+		Production|Any CPU = Production|Any CPU
+		QA|Any CPU = QA|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
@@ -29,21 +27,24 @@ Global
 		{A38CAA47-7779-4770-8DF0-9CBFCF917C10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A38CAA47-7779-4770-8DF0-9CBFCF917C10}.Dev|Any CPU.ActiveCfg = Dev|Any CPU
 		{A38CAA47-7779-4770-8DF0-9CBFCF917C10}.Dev|Any CPU.Build.0 = Dev|Any CPU
+		{A38CAA47-7779-4770-8DF0-9CBFCF917C10}.Production|Any CPU.ActiveCfg = Production|Any CPU
+		{A38CAA47-7779-4770-8DF0-9CBFCF917C10}.Production|Any CPU.Build.0 = Production|Any CPU
+		{A38CAA47-7779-4770-8DF0-9CBFCF917C10}.QA|Any CPU.ActiveCfg = QA|Any CPU
+		{A38CAA47-7779-4770-8DF0-9CBFCF917C10}.QA|Any CPU.Build.0 = QA|Any CPU
 		{A38CAA47-7779-4770-8DF0-9CBFCF917C10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A38CAA47-7779-4770-8DF0-9CBFCF917C10}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.Production|Any CPU.ActiveCfg = Release|Any CPU
+		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.Production|Any CPU.Build.0 = Release|Any CPU
+		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.QA|Any CPU.ActiveCfg = Release|Any CPU
+		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.QA|Any CPU.Build.0 = Release|Any CPU
 		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D2B10B6-58DF-476E-B6E8-902034DFAF46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{D8765950-1B20-47A2-AFD3-5F5F3C426CA2} = {4BA3D00C-2083-4F6E-B8BC-FD64CF0CD4B4}
-		{A38CAA47-7779-4770-8DF0-9CBFCF917C10} = {D8765950-1B20-47A2-AFD3-5F5F3C426CA2}
-		{1D2B10B6-58DF-476E-B6E8-902034DFAF46} = {D8765950-1B20-47A2-AFD3-5F5F3C426CA2}
 	EndGlobalSection
 EndGlobal

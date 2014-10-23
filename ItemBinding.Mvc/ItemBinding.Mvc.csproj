@@ -77,13 +77,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ItemBinding\ItemBinding.csproj">
-      <Project>{a38caa47-7779-4770-8df0-9cbfcf917c10}</Project>
-      <Name>ItemBinding</Name>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Include\ItemBinding.Mvc.config" />
   </ItemGroup>
   <PropertyGroup>
