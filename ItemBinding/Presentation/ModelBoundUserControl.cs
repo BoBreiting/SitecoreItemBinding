@@ -64,7 +64,7 @@ namespace ItemBinding.Presentation
     /// <value>The information text that is displayed if the data source is unpublishable.</value>
     protected virtual String DataSourceUnpublishableInfoText
     {
-      get { return "Datakilde kan ikke publiceres"; }
+      get { return "The datasource is unpublishable"; }
     }
 
     /// <summary>
@@ -73,7 +73,7 @@ namespace ItemBinding.Presentation
     /// <value>The information text that is displayed if the data source is unavailable.</value>
     protected virtual String DataSourceUnavailableInfoText
     {
-      get { return "Datakilde er ikke tilgængelig"; }
+      get { return "The datasource is unavailable"; }
     }
 
     /// <summary>
