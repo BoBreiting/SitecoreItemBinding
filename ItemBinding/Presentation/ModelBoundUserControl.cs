@@ -59,12 +59,34 @@ namespace ItemBinding.Presentation
     }
 
     /// <summary>
+    /// Gets a value indicating whether the data source unpublishable information text should be shown.
+    /// </summary>
+    /// <value>
+    /// <c>true</c> if the data source unpublishable information text should be shown; otherwise, <c>false</c>.
+    /// </value>
+    protected virtual Boolean ShowDataSourceUnpublishableInfoText
+    {
+      get { return true; }
+    }
+
+    /// <summary>
     /// Gets the information text that is displayed if the data source is unpublishable.
     /// </summary>
     /// <value>The information text that is displayed if the data source is unpublishable.</value>
     protected virtual String DataSourceUnpublishableInfoText
     {
       get { return "The datasource is unpublishable"; }
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether the data source unavailable information text should be shown.
+    /// </summary>
+    /// <value>
+    /// <c>true</c> if the data source unavailable information text should be shown; otherwise, <c>false</c>.
+    /// </value>
+    protected virtual Boolean ShowDataSourceUnavailableInfoText
+    {
+      get { return true; }
     }
 
     /// <summary>
@@ -77,6 +99,24 @@ namespace ItemBinding.Presentation
     }
 
     /// <summary>
+    /// Gets a value indicating whether the control should be automatically databound on init.
+    /// </summary>
+    /// <value>
+    /// <c>true</c> if the control should be automatically databound on init; otherwise, <c>false</c>.
+    /// </value>
+    protected virtual Boolean DatabindOnInit { get { return true; } }
+
+    /// <summary>
+    /// Raises the <see cref="E:System.Web.UI.Control.DataBinding" /> event.
+    /// </summary>
+    /// <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
+    protected override void OnDataBinding(EventArgs e)
+    {
+      _databound = true;
+      base.OnDataBinding(e);
+    }
+
+    /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.Init" /> event.
     /// </summary>
     /// <param name="e">An <see cref="T:System.EventArgs" /> object that contains the event data.</param>
@@ -84,11 +124,8 @@ namespace ItemBinding.Presentation
     {
       base.OnInit(e);
 
-      if (Model == null)
-      {
-        Controls.Clear();
+      if (!DatabindOnInit || Model == null)
         return;
-      }
 
       try
       {
@@ -107,25 +144,38 @@ namespace ItemBinding.Presentation
     /// <param name="writer">The <see cref="T:System.Web.UI.HtmlTextWriter" /> object that receives the server control content.</param>
     protected override void Render(HtmlTextWriter writer)
     {
-      if (Model != null)
+      if (SourceItem == null && Model == null)
       {
-        if (SourceItem.IsPublishable())
-        {
-          base.Render(writer);
-          return;
-        }
+        Controls.Clear();
 
-        if (!Sitecore.Context.PageMode.IsNormal)
-        {
+        if (!Sitecore.Context.PageMode.IsNormal && ShowDataSourceUnavailableInfoText)
+          RenderDatasourceUnavailableInfo(writer);
+
+        return;
+      }
+
+      if (SourceItem != null && !SourceItem.IsPublishable())
+      {
+        Controls.Clear();
+
+        if (!Sitecore.Context.PageMode.IsNormal && ShowDataSourceUnpublishableInfoText)
           RenderDatasourceUnpublishableInfo(writer);
-          return;
-        }
+
+        return;
       }
 
-      if (!Sitecore.Context.PageMode.IsNormal)
+      if (Model == null)
       {
-        RenderDatasourceUnavailableInfo(writer);
+        Controls.Clear();
+        return;
       }
+
+      if (_databound == false)
+      {
+        Controls.Clear();
+        return;
+      }
+      base.Render(writer);
     }
 
     /// <summary>
@@ -161,5 +211,6 @@ namespace ItemBinding.Presentation
     private T _model;
     private Item _sourceItem;
     private IModelFactory _modelFactory;
+    private Boolean _databound;
   }
 }
