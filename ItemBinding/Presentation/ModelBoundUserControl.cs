@@ -75,7 +75,7 @@ namespace ItemBinding.Presentation
     /// <value>The information text that is displayed if the data source is unpublishable.</value>
     protected virtual String DataSourceUnpublishableInfoText
     {
-      get { return "The datasource is unpublishable"; }
+      get { return TextService.DataSourceUnpublishableInfoText; }
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ namespace ItemBinding.Presentation
     /// <value>The information text that is displayed if the data source is unavailable.</value>
     protected virtual String DataSourceUnavailableInfoText
     {
-      get { return "The datasource is unavailable"; }
+      get { return TextService.DataSourceUnavailableInfoText; }
     }
 
     /// <summary>

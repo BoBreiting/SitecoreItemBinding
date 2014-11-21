@@ -62,6 +62,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\TextService.cs" />
     <Compile Include="Infrastructure\ItemExtensions.cs" />
     <Compile Include="Infrastructure\SublayoutExtensions.cs" />
     <Compile Include="Infrastructure\TemplateItemExtensions.cs" />
