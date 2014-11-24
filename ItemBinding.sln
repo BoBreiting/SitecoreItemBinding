@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{2129323B-E645-43BD-BDEA-3218CEFB4530}"
 	ProjectSection(SolutionItems) = preProject
 		Documentation\Architectural_Overview.vsd = Documentation\Architectural_Overview.vsd
@@ -13,6 +11,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBinding", "ItemBinding\ItemBinding.csproj", "{A38CAA47-7779-4770-8DF0-9CBFCF917C10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBinding.Mvc", "ItemBinding.Mvc\ItemBinding.Mvc.csproj", "{1D2B10B6-58DF-476E-B6E8-902034DFAF46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TDS Templates", "TDS Templates", "{A26D17C1-B548-413D-B090-B618D0B4E7FE}"
+	ProjectSection(SolutionItems) = preProject
+		TDS Templates\ItemBindingCombinedTemplates.tt = TDS Templates\ItemBindingCombinedTemplates.tt
+		TDS Templates\ItemBindingCompositeTemplates.tt = TDS Templates\ItemBindingCompositeTemplates.tt
+		TDS Templates\ItemBindingHeader.tt = TDS Templates\ItemBindingHeader.tt
+		TDS Templates\ItemBindingSeparateTemplates.tt = TDS Templates\ItemBindingSeparateTemplates.tt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

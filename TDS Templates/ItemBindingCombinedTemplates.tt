@@ -1,0 +1,55 @@
+<#@ template language="C#" #>
+<#@ output encoding="utf-8"#>
+<#@ include file="Helpers.tt" #>
+<#@ include file="StringExtensions.tt" #>
+<#@ include file="GeneralExtensions.tt" #>
+<#@ include file="Inflector.tt" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="HedgehogDevelopment.SitecoreProject.VSIP.CodeGeneration.Models" #>
+<#@ parameter name="Model" type="HedgehogDevelopment.SitecoreProject.VSIP.CodeGeneration.Models.SitecoreItem" #>
+<#@ parameter name="DefaultNamespace" type="System.String" #>
+<#
+/*
+This TDS Code Generation template is used to generate objects that are compatible with the
+Sitecore ItemBinding framework written by Bo Breiting and available @ https://github.com/BoBreiting/SitecoreItemBinding
+This template will create one class for each template combined with all base template relations
+*/
+#>
+<#
+SitecoreTemplate template = Model as SitecoreTemplate;
+if (template == null)
+{
+	return String.Empty;
+}
+
+string Tool = "Team Development for Sitecore - ItemBindingCombinedTemplates.tt";
+string ToolVersion = "1.0";
+#>
+namespace <#= GetNamespace(DefaultNamespace, template) #>
+{
+  ///<summary>
+  ///Generated partial class for the template <#= template.Name #> with combined base template relations
+  ///</summary>
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("<#= Tool #>", "<#= ToolVersion #>")]
+  [RequiredBaseTemplate("{<#= template.ID #>}")] // <#= template.Name #>
+<# if (template.BaseTemplates.Count > 0) { foreach(SitecoreTemplate baseTemplate in template.BaseTemplates) { #>
+  [RequiredBaseTemplate("{<#= baseTemplate.ID #>}")] // <#= baseTemplate.Name #>
+<# } } #>
+  public partial class <#= AsClassName(template.Name).Replace("_", String.Empty) #> : ItemModel
+  {
+    public <#= AsClassName(template.Name).Replace("_", String.Empty) #>(Item item) : base(item)
+    {
+    }
+
+<# foreach (var field in template.Fields) { #>
+    public readonly ID <#= AsPropertyName(field.Name).Replace("_", String.Empty) #>FieldId = new ID("{<#= field.ID #>}");
+<# } #>
+<# if (template.BaseTemplates.Count > 0) { foreach(SitecoreTemplate baseTemplate in template.BaseTemplates) { #>
+<# foreach (var field in baseTemplate.Fields) { #>
+    public readonly ID <#= AsPropertyName(field.Name).Replace("_", String.Empty) #>FieldId = new ID("{<#= field.ID #>}");
+<# } #>
+<# } } #>
+  }
+}
