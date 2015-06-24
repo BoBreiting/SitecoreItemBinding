@@ -22,7 +22,7 @@ namespace ItemBinding.Model
     /// <returns><c>true</c> if the item is bindable to the model class T; otherwise <c>false</c></returns>
     public static Boolean IsBindable<T>(this Item item) where T : class
     {
-      IBindingContract bindingContract = ModelFactoryService.GetPrototypeClone().BindingContract;
+      IBindingContract bindingContract = ModelFactoryService.ResolveModelFactory<T>().BindingContract;
       return item.IsBindable<T>(bindingContract);
     }
 
@@ -47,7 +47,7 @@ namespace ItemBinding.Model
     /// <returns><c>true</c> if the selected item is bindable to the model class T; otherwise <c>false</c></returns>
     public static Boolean IsSelectedItemBindable<T>(this Item item, ID fieldId) where T : class
     {
-      IBindingContract bindingContract = ModelFactoryService.GetPrototypeClone().BindingContract;
+      IBindingContract bindingContract = ModelFactoryService.ResolveModelFactory<T>().BindingContract;
       return item.IsSelectedItemBindable<T>(fieldId, bindingContract);
     }
 
@@ -74,7 +74,7 @@ namespace ItemBinding.Model
     /// <exception cref="System.Exception">This method calls the model factory and the associated binding contract that may throw an error if the item does not comply with the binding contract or if the model class does not contain a constructor that accepts an item.</exception>
     public static T BindAs<T>(this Item item) where T : class
     {
-      IModelFactory modelFactory = ModelFactoryService.GetPrototypeClone();
+      IModelFactory modelFactory = ModelFactoryService.ResolveModelFactory<T>();
       return item.BindAs<T>(modelFactory);
     }
 
@@ -99,7 +99,7 @@ namespace ItemBinding.Model
     /// <returns>A collection of model class T instances bound to the specified item's children.</returns>
     public static IEnumerable<T> BindChildrenAs<T>(this Item item) where T : class
     {
-      IModelFactory modelFactory = ModelFactoryService.GetPrototypeClone();
+      IModelFactory modelFactory = ModelFactoryService.ResolveModelFactory<T>();
       return BindChildrenAs<T>(item, modelFactory);
     }
 
@@ -124,7 +124,7 @@ namespace ItemBinding.Model
     /// <returns>A collection of model class T instances bound to the selected items in the specified field on the specified item.</returns>
     public static IEnumerable<T> BindSelectedItemsAs<T>(this Item item, ID fieldId) where T : class
     {
-      IModelFactory modelFactory = ModelFactoryService.GetPrototypeClone();
+      IModelFactory modelFactory = ModelFactoryService.ResolveModelFactory<T>();
       return BindSelectedItemsAs<T>(item, fieldId, modelFactory);
     }
 
@@ -151,7 +151,7 @@ namespace ItemBinding.Model
     /// <exception cref="System.Exception">This method calls the model factory and the associated binding contract that may throw an error if the selected item does not comply with the binding contract or if the model class does not contain a constructor that accepts an item.</exception>
     public static T BindSelectedItemAs<T>(this Item item, ID fieldId) where T : class
     {
-      IModelFactory modelFactory = ModelFactoryService.GetPrototypeClone();
+      IModelFactory modelFactory = ModelFactoryService.ResolveModelFactory<T>();
       return BindSelectedItemAs<T>(item, fieldId, modelFactory);
     }
 

@@ -56,7 +56,7 @@ namespace ItemBinding.Mvc.Presentation
     /// <value>The model factory that is used to bind the SourceItem to the model class T.</value>
     protected virtual IModelFactory ModelFactory
     {
-      get { return _modelFactory ?? (_modelFactory = ModelFactoryService.GetPrototypeClone()); }
+      get { return _modelFactory ?? (_modelFactory = ModelFactoryService.ResolveModelFactory<T>()); }
     }
 
     /// <summary>
