@@ -169,5 +169,85 @@ namespace ItemBinding.Model
       Item targetItem = item.GetDropLinkSelectedItem(fieldId);
       return targetItem != null ? targetItem.BindAs<T>(modelFactory) : null;
     }
+
+    /// <summary>
+    /// Determines whether the specified item or one of its ancestors is bindable to the model class T.
+    /// </summary>
+    /// <typeparam name="T">The model class that the item should be bindable to.</typeparam>
+    /// <param name="item">The item to test.</param>
+    /// <returns><c>true</c> if the item or one of its ancestors is bindable to the model class T; otherwise <c>false</c></returns>
+    public static Boolean IsAncestorOrSelfBindable<T>(this Item item) where T : class
+    {
+      IBindingContract bindingContract = ModelFactoryService.ResolveModelFactory<T>().BindingContract;
+      return item.IsAncestorOrSelfBindable<T>(bindingContract);
+    }
+
+    /// <summary>
+    /// Determines whether the specified item or one of its ancestors is bindable to the model class T.
+    /// </summary>
+    /// <typeparam name="T">The model class that the item should be bindable to.</typeparam>
+    /// /// <param name="bindingContract">The binding contract to use for testing the item.</param>
+    /// <param name="item">The item to test.</param>
+    /// <returns><c>true</c> if the item or one of its ancestors is bindable to the model class T; otherwise <c>false</c></returns>
+    public static Boolean IsAncestorOrSelfBindable<T>(this Item item, IBindingContract bindingContract) where T : class
+    {
+      return GetAncestorsAndSelf(item).Any(itm => itm.IsBindable<T>());
+    }
+
+    /// <summary>
+    /// Create a model class T instance and bind the specified item or the nearest bindable ancestor to the instance.
+    /// </summary>
+    /// <typeparam name="T">The model class that the item should be bound to.</typeparam>
+    /// <param name="item">The item to bind.</param>
+    /// <returns>A new instance of the model class T bound to the specified item or the nearest bindable ancestor or null if no bindable item can be located.</returns>
+    /// <exception cref="System.Exception">This method calls the model factory and the associated binding contract that may throw an error if the item does not comply with the binding contract or if the model class does not contain a constructor that accepts an item.</exception>
+    public static T BindAncestorOrSelfAs<T>(this Item item) where T : class
+    {
+      IModelFactory modelFactory = ModelFactoryService.ResolveModelFactory<T>();
+      return item.BindAncestorOrSelfAs<T>(modelFactory);
+    }
+
+    /// <summary>
+    /// Create a model class T instance and bind the specified item or the nearest bindable ancestor to the instance.
+    /// </summary>
+    /// <typeparam name="T">The model class that the item should be bound to.</typeparam>
+    /// <param name="item">The item to bind.</param>
+    /// <param name="modelFactory">The model factory to use.</param>
+    /// <returns>A new instance of the model class T bound to the specified item or the nearest bindable ancestor or null if no bindable item can be located.</returns>
+    /// <exception cref="System.Exception">This method calls the model factory and the associated binding contract that may throw an error if the item does not comply with the binding contract or if the model class does not contain a constructor that accepts an item.</exception>
+    public static T BindAncestorOrSelfAs<T>(this Item item, IModelFactory modelFactory) where T : class
+    {
+      Item bindableItem = GetAncestorsAndSelf(item).FirstOrDefault(itm => itm.IsBindable<T>());
+      return bindableItem != null ? bindableItem.BindAs<T>() : null;
+    }
+
+    /// <summary>
+    /// Creates a collection of model class T instances and bind the items in the specified collection to the instances.
+    /// </summary>
+    /// <typeparam name="T">The model class that the items in the collection should be bound to.</typeparam>
+    /// <param name="items">The collection containing the items to bind.</param>
+    /// <returns>A collection of model class T instances bound to the items in the specified collection.</returns>
+    public static IEnumerable<T> BindItemsAs<T>(this IEnumerable<Item> items) where T : class
+    {
+      IModelFactory modelFactory = ModelFactoryService.ResolveModelFactory<T>();
+      return items.BindItemsAs<T>(modelFactory);
+    }
+
+    /// <summary>
+    /// Creates a collection of model class T instances and bind the items in the specified collection to the instances.
+    /// </summary>
+    /// <typeparam name="T">The model class that the items in the collection should be bound to.</typeparam>
+    /// <param name="items">The collection containing the items to bind.</param>
+    /// <param name="modelFactory">The model factory to use.</param>
+    /// <returns>A collection of model class T instances bound to the items in the specified collection.</returns>
+    public static IEnumerable<T> BindItemsAs<T>(this IEnumerable<Item> items, IModelFactory modelFactory) where T : class
+    {
+      return items.Where(itm => itm.IsBindable<T>()).Select(itm => itm.BindAs<T>(modelFactory));
+    }
+
+    private static IEnumerable<Item> GetAncestorsAndSelf(Item item)
+    {
+      return item.Axes.SelectItems("ancestor-or-self::*");
+    }
   }
 }

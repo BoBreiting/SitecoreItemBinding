@@ -40,11 +40,11 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\..\..\Projects\PT\ItemBinding\www\bin\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\..\..\Projects\PT\ItemBinding 2.2\www\bin\Sitecore.Kernel.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Sitecore.Mvc">
-      <HintPath>..\..\..\Projects\PT\ItemBinding\www\bin\Sitecore.Mvc.dll</HintPath>
+      <HintPath>..\..\..\Projects\PT\ItemBinding 2.2\www\bin\Sitecore.Mvc.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
