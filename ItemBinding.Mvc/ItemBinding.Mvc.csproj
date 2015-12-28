@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,7 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\ModelLocator.cs" />
-    <Compile Include="Infrastructure\Pipelines\Response\GetModel\GetFromRenderingItem.cs" />
+    <Compile Include="Infrastructure\Pipelines\GetModel\GetFromRenderingItem.cs" />
+    <Compile Include="Infrastructure\Pipelines\RenderRendering\ResolveDataSourceQuery.cs" />
     <Compile Include="Model\ItemBoundRenderingModel.cs" />
     <Compile Include="Presentation\ModelBoundController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

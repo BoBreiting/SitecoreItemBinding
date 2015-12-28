@@ -4,7 +4,7 @@ using Sitecore.Mvc.Extensions;
 using Sitecore.Mvc.Pipelines.Response.GetModel;
 using Sitecore.Mvc.Presentation;
 
-namespace ItemBinding.Mvc.Infrastructure.Pipelines.Response.GetModel
+namespace ItemBinding.Mvc.Infrastructure.Pipelines.GetModel
 {
   public class GetFromRenderingItem : GetModelProcessor
   {

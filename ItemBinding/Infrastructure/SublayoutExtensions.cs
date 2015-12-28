@@ -22,7 +22,7 @@ namespace ItemBinding.Infrastructure
 
     private static Boolean IsDataSourceQuery(String dataSourcePath)
     {
-      return dataSourcePath.StartsWith("query:");
+      return dataSourcePath.StartsWith("query:", StringComparison.OrdinalIgnoreCase);
     }
 
     private static Boolean IsRelativeQuery(String query)
