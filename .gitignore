@@ -17,6 +17,7 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+.vs/
 
 # Roslyn cache directories
 *.ide/
@@ -194,7 +195,8 @@ FakesAssemblies/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -228,3 +230,4 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+.vs/config/applicationhost.config
