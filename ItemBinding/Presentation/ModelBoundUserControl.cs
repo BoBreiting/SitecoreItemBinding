@@ -106,6 +106,17 @@ namespace ItemBinding.Presentation
     /// </value>
     protected virtual Boolean DatabindOnInit { get { return true; } }
 
+	/// <summary>
+    /// Binds a data source to the invoked server control and all its child controls.
+    /// </summary>
+	public override void DataBind()
+    {
+      if (Model == null)
+        return;
+
+      base.DataBind();
+    }
+	
     /// <summary>
     /// Raises the <see cref="E:System.Web.UI.Control.DataBinding" /> event.
     /// </summary>
